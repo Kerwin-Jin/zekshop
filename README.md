@@ -1,5 +1,7 @@
 # zekshop
 
+## 项目说明💫
+
 ## Project setup
 ```
 yarn install
