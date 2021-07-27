@@ -1,13 +1,18 @@
 <template>
   <div>
-    <h1>nihao</h1>
+    <Header/>
+    <router-view></router-view>
+    <!-- <Footer v-show="$route.path!=='/login' && $route.path!=='/register'"/> -->
+    <Footer v-show="!$route.meta.isHidden"/>
   </div>
 </template>
 
 <script>
-var a = 100;
+import Header from "@/components/Header"
+import Footer from "@/components/Footer"
 export default {
-  name:"App"
+  name:"App",
+  components:{Header,Footer}
 }
 </script>
 
