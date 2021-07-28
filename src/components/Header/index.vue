@@ -58,7 +58,14 @@ export default {
   },
   methods:{
     toSearch(){
-      this.$router.push({name:'search',params:{keyword:this.keyword}});
+      if(this.keyword.trim()=="") return alert("请输入搜索关键词！");
+      // this.$router.push({name:'search',params:{keyword:this.keyword}}).catch(()=>{});
+      this.$router.push({
+        name:"search",
+        params:{
+          keyword:this.keyword
+        }
+      })
     }
   }
 };
