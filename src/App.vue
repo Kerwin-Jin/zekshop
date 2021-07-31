@@ -10,15 +10,11 @@
 <script>
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
-import {getCategoryList} from "@/api"
 
 export default {
   name:"App",
   components:{Header,Footer},
-  mounted(){
-   const res = getCategoryList();
-   console.log(res);
-  }
+ 
 }
 </script>
 

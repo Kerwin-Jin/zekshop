@@ -5,7 +5,7 @@ import request from "./ajax.js"
 // http://123.57.205.78/api/product/getBaseCategoryList
 
 // 请求三级分类列表数据
-export const getCategoryList = function(){
+export const reqCategoryList = function(){
     return request({
         url:"/product/getBaseCategoryList",
         method:"get"

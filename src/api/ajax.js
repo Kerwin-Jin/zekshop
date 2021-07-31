@@ -9,6 +9,8 @@ import axios from "axios"
 import NProgress from "nprogress";
 import "nprogress/nprogress.css"
 
+// http://123.57.205.78/api/product/getBaseCategoryList
+
 const service = axios.create({
     baseURL: "http://123.57.205.78/api/",
     timeout: 20000
@@ -43,15 +45,10 @@ service.interceptors.response.use(function (response) {
 
     NProgress.done();   //停止进度条
 
-
     // 统一处理错误
     alert("发送ajax请求失败：",error.message||"未知错误");
-
-    
     //后面想继续处理这个错误，返回一个失败的promise
     return Promise.reject(error);       
-
-
     //返回的是pedding状态的promise，代表中断promise链，后期就没办法处理了
     // return new Promise(()=>{})      
 });
