@@ -17,20 +17,20 @@
         <div class="all-sort-list2">
           <div class="item" v-for="c1 in categoryList" :key="c1.categoryId">
             <h3>
-              <!-- <a href="">{{c1.categoryName}}</a> -->
-              <router-link :to="{name:'search',query:{category1Id:c1.categoryId,categoryName:c1.categoryName}}">{{c1.categoryName}}</router-link>
+              <a href="javascript:;" @click="$router.push({name:'search',query:{category1Id:c1.categoryId,categoryName:c1.categoryName}})">{{c1.categoryName}}</a>
+              <!-- <router-link :to="{name:'search',query:{category1Id:c1.categoryId,categoryName:c1.categoryName}}">{{c1.categoryName}}</router-link> -->
             </h3>
             <div class="item-list clearfix">
               <div class="subitem">
                 <dl class="fore" v-for="c2 in c1.categoryChild" :key="c2.categoryId">
                   <dt>
-                    <!-- <a href="">{{c2.categoryName}}</a> -->
-                    <router-link :to="{name:'search',query:{categoryId:c2.category2Id,categoryName:c2.categoryName}}">{{c2.categoryName}}</router-link>
+                    <a href="javascript:;" @click="$router.push({name:'search',query:{categoryId:c2.category2Id,categoryName:c2.categoryName}})">{{c2.categoryName}}</a>
+                    <!-- <router-link :to="{name:'search',query:{categoryId:c2.category2Id,categoryName:c2.categoryName}}">{{c2.categoryName}}</router-link> -->
                   </dt>
                   <dd>
                     <em>
-                      <a href="" v-for="c3 in c2.categoryChild" :key="c3.categoryId">{{c3.categoryName}}</a>
-                      <router-link :to="{name:'search',query:{category3Id:c3.category2Id,categoryName:c3.categoryName}}">{{c3.categoryName}}</router-link>
+                      <a href="javascript:;" @click="$router.push({name:'search',query:{category3Id:c3.category2Id,categoryName:c3.categoryName}})">{{c3.categoryName}}</a>
+                      <!-- <router-link :to="{name:'search',query:{category3Id:c3.category2Id,categoryName:c3.categoryName}}">{{c3.categoryName}}</router-link> -->
                     </em>
                   </dd>
                 </dl>
