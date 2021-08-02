@@ -58,14 +58,22 @@ export default {
   },
   methods:{
     toSearch(){
+      // 如果没有输入的内容，直接return
       if(this.keyword.trim()=="") return alert("请输入搜索关键词！");
       // this.$router.push({name:'search',params:{keyword:this.keyword}}).catch(()=>{});
-      this.$router.push({
+
+      let location = {
         name:"search",
         params:{
           keyword:this.keyword
         }
-      })
+      }
+
+      if(this.$route.query){
+        location.query = this.$route.query
+      }
+
+      this.$router.push(location);
     }
   }
 };

@@ -1,5 +1,7 @@
 <template>
   <div>
+    {{categoryName}}
+    {{keyword}}
     <TypeNav></TypeNav>
   </div>
 </template>
@@ -7,7 +9,7 @@
 <script>
 export default {
   name: "Search",
-  props: ["keyword"],
+  props: ["categoryName","keyword"]
 };
 </script>
 
