@@ -1,16 +1,24 @@
 
-import {reqCategoryList} from "@/api"
-
+import {reqCategoryList,reqBannerList,reqFloorList} from "@/api"
 
 const state = {
-    categoryList:[]
+    categoryList:[],
+    bannerList:[],
+    floorList:[]
 }
 
 
 const mutations = {
     RECCEIVE_CATEGORYLIST(state,categoryList){
         state.categoryList = categoryList;
+    },
+    RECCEIVE_BANNERLIST(state,bannerList){
+        state.bannerList = bannerList;
+    },
+    RECCEIVE_FLOORLIST(state,floorList){
+        state.floorList = floorList;
     }
+
 }
 
 
@@ -27,6 +35,22 @@ const actions = {
 
         if(result.code === 200){
             context.commit('RECCEIVE_CATEGORYLIST',result.data);
+        }
+    },
+
+    // 获取轮播图数据
+    async getBannerList(context){
+        const result = await reqBannerList();
+        if(result.code==200){
+            context.commit('RECCEIVE_BANNERLIST',result.data);
+        }
+    },
+
+    // 获取轮播图数据
+    async getFloorList(context){
+        const result = await reqFloorList();
+        if(result.code==200){
+            context.commit('RECCEIVE_FLOORLIST',result.data);
         }
     }
 }

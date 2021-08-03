@@ -9,10 +9,8 @@ import axios from "axios"
 import NProgress from "nprogress";
 import "nprogress/nprogress.css"
 
-// http://123.57.205.78/api/product/getBaseCategoryList
-
 const service = axios.create({
-    baseURL: "http://123.57.205.78/api",
+    baseURL: "https://www.fastmock.site/mock/a18ca6ac4613074da344a3f90320ede6/api",
     timeout: 20000
 })
 

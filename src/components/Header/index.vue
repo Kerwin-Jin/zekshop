@@ -65,14 +65,16 @@ export default {
       let location = {
         name:"search",
         params:{
-          keyword:this.keyword
+          keyword:this.keyword || undefined
         }
       }
 
+      // 判断之前有没有带query参数，有的话都带上（合并参数）
       if(this.$route.query){
-        location.query = this.$route.query
+        location.query = this.$route.query;
       }
 
+      // 进行跳转      
       this.$router.push(location);
     }
   }

@@ -132,6 +132,7 @@ export default {
         // 最后将封装好的query参数封装到请求的对象参数中，发送请求
         location.query = query;
 
+        // 跳转之前，合并原来过来时候的params参数
         if(this.$route.params){
           location.params = this.$route.params;
         }
