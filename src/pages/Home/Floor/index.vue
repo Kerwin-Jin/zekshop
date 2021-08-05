@@ -3,7 +3,7 @@
   <div class="floor">
     <div class="py-container">
       <div class="title clearfix">
-        <h3 class="fl">家用电器</h3>
+        <h3 class="fl">{{floor.name}}</h3>
         <div class="fr">
           <ul class="nav-tabs clearfix">
             <li class="active">
@@ -50,12 +50,6 @@
                   <div class="swiper-slide">
                     <img src="./images/floor-1-b01.png" />
                   </div>
-                  <div class="swiper-slide">
-                    <img src="./images/floor-1-b02.png" />
-                  </div>
-                  <div class="swiper-slide">
-                    <img src="./images/floor-1-b03.png" />
-                  </div>
                 </div>
                 <!-- 如果需要分页器 -->
                 <div class="swiper-pagination"></div>
@@ -96,6 +90,7 @@
 <script>
 export default {
   name: "Floor",
+  props:["floor"]
 };
 </script>
 

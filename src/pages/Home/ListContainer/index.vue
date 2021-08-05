@@ -5,9 +5,13 @@
       <div class="center">
         <!--banner轮播-->
         <div class="swiper-container" id="mySwiper">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <img src="./images/banner1.jpg" />
+          <div class="swiper-wrapper" ref="bannerSwiper">
+            <div
+              class="swiper-slide"
+              v-for="banner in bannerList"
+              :key="banner.id"
+            >
+              <img :src="banner.imgUrl" />
             </div>
           </div>
           <!-- 如果需要分页器 -->
@@ -92,11 +96,40 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
-    name:"ListContainer",
-    mounted(){
-      this.$store.dispatch('getBannerList');
-    }
+  name: "ListContainer",
+  mounted() {
+    this.$store.dispatch("getBannerList");
+
+    setTimeout(() => {
+      new Swiper(this.refs.bannerSwiper, {
+        direction: "vertical", // 垂直切换选项
+        loop: true, // 循环模式选项
+
+        // 如果需要分页器
+        pagination: {
+          el: ".swiper-pagination",
+        },
+
+        // 如果需要前进后退按钮
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+
+        // 如果需要滚动条
+        scrollbar: {
+          el: ".swiper-scrollbar",
+        },
+      });
+    }, 2000);
+  },
+  computed: {
+    ...mapState({
+      bannerList: (state) => state.home.bannerList,
+    }),
+  },
 };
 </script>
 
