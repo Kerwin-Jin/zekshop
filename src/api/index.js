@@ -28,3 +28,15 @@ export const reqFloorList = function(){
         method:"get"
     })
 }
+
+
+// 请求获取Search组件中的数据
+// 这个请求参数params必须是一个对象，可以是空对象，但是必须传
+// 如果这个参数给空对象，代表获取商品默认搜索的数据
+export const reqSearchInfo = (params)=>{
+    return mockRequest({
+        url:"/list",
+        method:"post",
+        data:params     //params是用户搜索的参数，这个参数是用户在请求的时候个传递的
+    })
+}

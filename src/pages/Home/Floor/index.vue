@@ -3,11 +3,11 @@
   <div class="floor">
     <div class="py-container">
       <div class="title clearfix">
-        <h3 class="fl">{{floor.name}}</h3>
+        <h3 class="fl">{{ floor.name }}</h3>
         <div class="fr">
           <ul class="nav-tabs clearfix">
             <li class="active" v-for="nav in floor.navList" :key="nav.id">
-              <a href="#tab1" data-toggle="tab">{{nav.text}}</a>
+              <a href="#tab1" data-toggle="tab">{{ nav.text }}</a>
             </li>
           </ul>
         </div>
@@ -17,14 +17,20 @@
           <div class="floor-1">
             <div class="blockgary">
               <ul class="jd-list">
-                <li v-for="(keyword,index) in floor.keywords" :key="index">{{keyword}}</li>
+                <li v-for="(keyword, index) in floor.keywords" :key="index">
+                  {{ keyword }}
+                </li>
               </ul>
               <img :src="floor.imgUrl" />
             </div>
             <div class="floorBanner">
-              <div class="swiper-container" id="floor1Swiper">
+              <div class="swiper-container" ref="floorSwiper">
                 <div class="swiper-wrapper">
-                  <div class="swiper-slide" v-for="carouse in floor.carouselList" :key="carouse.id">
+                  <div
+                    class="swiper-slide"
+                    v-for="carouse in floor.carouselList"
+                    :key="carouse.id"
+                  >
                     <img :src="carouse.imgUrl" />
                   </div>
                 </div>
@@ -65,9 +71,41 @@
 </template>
 
 <script>
+import Swiper from "swiper";
 export default {
   name: "Floor",
-  props:["floor"]
+  props: ["floor"],
+  mounted() {
+
+    // 在listContainer内部，轮播图直接在这实例化是不行的，最终采用watch+nextTick才完成的
+    // 而floor当中的轮播图,为啥直接在mounted中实例化就能直接成功呢?
+    // 它肯定是在页面形成之后才实例化的
+    // 原因:刚才在banner的时候,数据是在mounted里面请求的
+    // 必须等待数据请求回来,然后根据数据创建好结构,才能实例化swiper
+    // 现在我们的floor不需要,因为在floor中,不存在请求数据,数据早都请求回来了
+    // 在Home组件中请求的数据，而且floor组件的创建必须是根据请求回来的数据v-for创建的
+    // 所以floor中实例化的时候,数据一定是存在的,结构就不需要等待数据,早早就形成了
+    new Swiper(this.$refs.floorSwiper, {
+      // direction: "vertical", // 垂直切换选项
+      // loop: true, // 循环模式选项
+
+      // 如果需要分页器
+      pagination: {
+        el: ".swiper-pagination",
+      },
+
+      // 如果需要前进后退按钮
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+
+      // 如果需要滚动条
+      scrollbar: {
+        el: ".swiper-scrollbar",
+      },
+    });
+  },
 };
 </script>
 

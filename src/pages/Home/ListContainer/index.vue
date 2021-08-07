@@ -103,34 +103,47 @@ export default {
   name: "ListContainer",
   mounted() {
     this.$store.dispatch("getBannerList");
-
-    setTimeout(() => {
-      new Swiper(this.$refs.bannerSwiper, {
-        // direction: "vertical", // 垂直切换选项
-        loop: true, // 循环模式选项
-
-        // 如果需要分页器
-        pagination: {
-          el: ".swiper-pagination",
-        },
-
-        // 如果需要前进后退按钮
-        navigation: {
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
-        },
-
-        // 如果需要滚动条
-        scrollbar: {
-          el: ".swiper-scrollbar",
-        },
-      });
-    },2000);
   },
   computed: {
     ...mapState({
       bannerList: (state) => state.home.bannerList,
     }),
+  },
+  watch: {
+    bannerList(newValue, oldValue) {
+
+      // 这里我们通过监听数据，当数据一旦有变化，我们就去实例化swiper，但是发现还是不行
+      // 我们就得考虑是不是也没还是没有形成呢？答案是肯定的，也就是说有了数据，上面页面才开始v-for形成结构
+      // 得等结构完全形成之后再去实例化
+
+      // 在最近的一次页面更新完成之后，执行enxtTick当中传递的回调函数
+      // nextTick是页面UI金的一次更新完成之后才会执行
+      // updated是只要页面有数据更新，那么就会执行，他的执行不关心是不是最近一次更新
+      // 所以在这里 watch + $nextTick是实例化Swiper最佳的方式
+
+      this.$nextTick(() => {
+        new Swiper(this.$refs.bannerSwiper, {
+          // direction: "vertical", // 垂直切换选项
+          loop: true, // 循环模式选项
+
+          // 如果需要分页器
+          pagination: {
+            el: ".swiper-pagination",
+          },
+
+          // 如果需要前进后退按钮
+          navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          },
+
+          // 如果需要滚动条
+          scrollbar: {
+            el: ".swiper-scrollbar",
+          }
+        });
+      });
+    },
   },
 };
 </script>

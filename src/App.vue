@@ -18,6 +18,8 @@ export default {
 
     // 当App组件挂载的时候，就通知vuex中的action去发送请求，将数据进行保存，这样就不用每次TypeNav挂载的时候去重复发请求了
     this.$store.dispatch("getCategoryList");
+    
+    this.$store.dispatch('getSearchInfo',{});
   }
 }
 </script>
