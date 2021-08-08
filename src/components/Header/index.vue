@@ -56,6 +56,9 @@ export default {
       keyword:''
     }
   },
+  mounted(){
+    this.$bus.$on('clearKeyword',this.clearKeyword)
+  },
   methods:{
     toSearch(){
       // 如果没有输入的内容，直接return
@@ -76,6 +79,10 @@ export default {
 
       // 进行跳转      
       this.$router.push(location);
+    },
+
+    clearKeyword(){
+      this.keyword = "";
     }
   }
 };

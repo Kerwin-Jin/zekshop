@@ -14,7 +14,7 @@
         <a href="###">秒杀</a>
       </nav>
       <div class="sort" v-show="isShow">
-        <div class="all-sort-list2">
+        <div class="all-sort-list2" @click="toSearch">
           <div class="item" v-for="c1 in categoryList" :key="c1.categoryId">
             <h3>
               <!-- 1、第一种方式：用router-view + 声明式导航来实现跳转，但是这样组件会特别多，特别耗内存，每个链接都是一个组件，反映在页面上就是当划过这些链接时，会有卡顿现象， -->
@@ -26,7 +26,6 @@
              
               <!-- 3、第三种方式：通过事件委派的方式给a标签的父元素添加点击事件。然后再给每个a标签身上通过data-xxx方式添加我们要传的参数，如下：-->
               <a href="javascript:;" 
-              @click="toSearch"
               :data-category1Id="c1.categoryId"
               :data-categoryName="c1.categoryName"
               >{{c1.categoryName}}</a>
@@ -39,7 +38,6 @@
                     <!-- <a href="javascript:;" @click="$router.push({name:'search',query:{category2Id:c2.categoryId,categoryName:c2.categoryName}})">{{c2.categoryName}}</a> -->
                     <!-- <router-link :to="{name:'search',query:{category2Id:c2.category2Id,categoryName:c2.categoryName}}">{{c2.categoryName}}</router-link> -->
                     <a href="javascript:;" 
-                    @click="toSearch"
                     :data-category2Id="c2.categoryId"
                     :data-categoryName="c2.categoryName"
                     >{{c2.categoryName}}</a>
@@ -49,7 +47,6 @@
                       <!-- <a href="javascript:;" @click="$router.push({name:'search',query:{categoryId:c3.categoryId,categoryName:c3.categoryName}})">{{c3.categoryName}}</a> -->
                       <!-- <router-link :to="{name:'search',query:{category3Id:c3.categoryId,categoryName:c3.categoryName}}">{{c3.categoryName}}</router-link> -->
                       <a href="javascript:;" 
-                      @click="toSearch"
                       :data-category3Id="c3.categoryId"
                       :data-categoryName="c3.categoryName"
                       >{{c3.categoryName}}</a>

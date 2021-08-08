@@ -5,11 +5,7 @@
       <div class="fl key brand">品牌</div>
       <div class="value logos">
         <ul class="logo-list">
-          <li>索尼（SONY）</li>
-          <li>TCL</li>
-          <li>长虹（CHANGHONG）</li>
-          <li>飞利浦（PHILIPS）</li>
-          <li>风行电视</li>
+          <li v-for="trademark in trademarkList" :key="trademark.tmId" @click="searchForTrademark(trademark)">{{trademark.tmName}}</li>
           <li><img src="../images/search/phone06.png" /></li>
           <li><img src="../images/search/phone07.png" /></li>
           <li><img src="../images/search/phone08.png" /></li>
@@ -158,7 +154,18 @@
 </template>
 
 <script>
-export default {};
+import { mapGetters } from 'vuex';
+export default {
+  name:"SearchSelector",
+  computed:{
+    ...mapGetters(['trademarkList'])
+  },
+  methods:{
+    searchForTrademark(trademark){
+      this.$emit('searchForTrademark',trademark);
+    }
+  }
+};
 </script>
 
 <style lang="less" scoped>

@@ -51,11 +51,11 @@ const routes = {
             name:"search",
             path:"/search/:keyword?",
             component:Search,
-            props(route){
-                const {categoryName} = route.query;
-                const {keyword} = route.params;
-                return{categoryName,keyword};
-            }
+            // props(route){
+            //     const {categoryName} = route.query;
+            //     const {keyword} = route.params;
+            //     return{categoryName,keyword};
+            // }
         },
         {
             path:"*",
