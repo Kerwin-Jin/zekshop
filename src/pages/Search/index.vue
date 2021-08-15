@@ -32,9 +32,7 @@
           <div class="sui-navbar">
             <div class="navbar-inner filter">
               <ul class="sui-nav">
-                <li
-                  :class="{ active: sortFlag === '1' }"
-                >
+                <li :class="{ active: sortFlag === '1' }">
                   <a href="javascript:;" @click="changeOrder('1')">
                     综合
                     <i
@@ -47,9 +45,7 @@
                     ></i>
                   </a>
                 </li>
-                <li
-                  :class="{ active: sortFlag === '2' }"
-                >
+                <li :class="{ active: sortFlag === '2' }">
                   <a href="javascript:;" @click="changeOrder('2')">价格</a>
                   <i
                     v-if="sortFlag === '2'"
@@ -442,35 +438,14 @@
               </li>
             </ul>
           </div>
-          <div class="fr page">
-            <div class="sui-pagination clearfix">
-              <ul>
-                <li class="prev disabled">
-                  <a href="#">«上一页</a>
-                </li>
-                <li class="active">
-                  <a href="#">1</a>
-                </li>
-                <li>
-                  <a href="#">2</a>
-                </li>
-                <li>
-                  <a href="#">3</a>
-                </li>
-                <li>
-                  <a href="#">4</a>
-                </li>
-                <li>
-                  <a href="#">5</a>
-                </li>
-                <li class="dotted"><span>...</span></li>
-                <li class="next">
-                  <a href="#">下一页»</a>
-                </li>
-              </ul>
-              <div><span>共10页&nbsp;</span></div>
-            </div>
-          </div>
+
+          <!-- 分页器组件 -->
+          <Pagination
+            :currentPageNum="searchParams.pageNo"
+            :total="searchInfo.total"
+            :pageSize="searchParams.pageSize"
+            :continueNum="5"
+          ></Pagination>
         </div>
         <!--hotsale-->
         <div class="clearfix hot-sale">
@@ -562,7 +537,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapState } from "vuex";
 import SearchSelector from "./SearchSelector";
 export default {
   name: "Search",
@@ -581,7 +556,7 @@ export default {
         trademark: "",
 
         order: "2:asc",
-        pageNo: 1,
+        pageNo: 14,
         pageSize: 10,
       },
     };
@@ -648,33 +623,34 @@ export default {
       console.log(trademark);
     },
 
-
     // 改变排序规则
-    changeOrder(sortFlag){
-
+    changeOrder(sortFlag) {
       let originSortFlag = this.sortFlag;
       let originSortType = this.sortType;
-      let newOrder = '';
+      let newOrder = "";
 
       // 如果点击了相同的排序标志，说明点击的是同一个标志，我们需要将排序类型改变
-      if(sortFlag === originSortFlag){
-        newOrder = `${sortFlag}:${originSortType==='asc'?'desc':'asc'}`;
-      }else{
+      if (sortFlag === originSortFlag) {
+        newOrder = `${sortFlag}:${originSortType === "asc" ? "desc" : "asc"}`;
+      } else {
         // 如果点击了不同的排序标志，说明点击的是同一个标志，我们需要将排序类型改变
         newOrder = `${sortFlag}:desc`;
       }
       console.log(newOrder);
       this.searchParams.order = newOrder;
-    }
+    },
   },
   computed: {
     ...mapGetters(["attrList", "goodList", "trademarkList"]),
-    sortFlag(){
-      return this.searchParams.order.split(':')[0];
+    ...mapState({
+      searchInfo:state=>state.search.searchInfo
+    }),
+    sortFlag() {
+      return this.searchParams.order.split(":")[0];
     },
-    sortType(){
-      return this.searchParams.order.split(':')[1];
-    }
+    sortType() {
+      return this.searchParams.order.split(":")[1];
+    },
   },
 };
 </script>
@@ -883,82 +859,6 @@ export default {
                 }
               }
             }
-          }
-        }
-      }
-      .page {
-        width: 733px;
-        height: 66px;
-        overflow: hidden;
-        float: right;
-        .sui-pagination {
-          margin: 18px 0;
-          ul {
-            margin-left: 0;
-            margin-bottom: 0;
-            vertical-align: middle;
-            width: 490px;
-            float: left;
-            li {
-              line-height: 18px;
-              display: inline-block;
-              a {
-                position: relative;
-                float: left;
-                line-height: 18px;
-                text-decoration: none;
-                background-color: #fff;
-                border: 1px solid #e0e9ee;
-                margin-left: -1px;
-                font-size: 14px;
-                padding: 9px 18px;
-                color: #333;
-              }
-              &.active {
-                a {
-                  background-color: #fff;
-                  color: #e1251b;
-                  border-color: #fff;
-                  cursor: default;
-                }
-              }
-              &.prev {
-                a {
-                  background-color: #fafafa;
-                }
-              }
-              &.disabled {
-                a {
-                  color: #999;
-                  cursor: default;
-                }
-              }
-              &.dotted {
-                span {
-                  margin-left: -1px;
-                  position: relative;
-                  float: left;
-                  line-height: 18px;
-                  text-decoration: none;
-                  background-color: #fff;
-                  font-size: 14px;
-                  border: 0;
-                  padding: 9px 18px;
-                  color: #333;
-                }
-              }
-              &.next {
-                a {
-                  background-color: #fafafa;
-                }
-              }
-            }
-          }
-          div {
-            color: #333;
-            font-size: 14px;
-            float: right;
-            width: 241px;
           }
         }
       }
