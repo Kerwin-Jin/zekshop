@@ -12,37 +12,57 @@
             </li>
           </ul>
           <ul class="fl sui-tag">
-            <li class="with-x" v-if="searchParams.categoryName">{{searchParams.categoryName}}<i @click="removeCategoryName">×</i></li>
-            <li class="with-x" v-if="searchParams.keyword">{{searchParams.keyword}}<i @click="removeKeyword">×</i></li>
+            <li class="with-x" v-if="searchParams.categoryName">
+              {{ searchParams.categoryName
+              }}<i @click="removeCategoryName">×</i>
+            </li>
+            <li class="with-x" v-if="searchParams.keyword">
+              {{ searchParams.keyword }}<i @click="removeKeyword">×</i>
+            </li>
           </ul>
         </div>
 
         <!--selector-->
-        <SearchSelector @searchForTrademark="searchForTrademark"></SearchSelector>
+        <SearchSelector
+          @searchForTrademark="searchForTrademark"
+        ></SearchSelector>
 
         <!--details-->
         <div class="details clearfix">
           <div class="sui-navbar">
             <div class="navbar-inner filter">
               <ul class="sui-nav">
-                <li class="active">
-                  <a href="#">综合</a>
+                <li
+                  :class="{ active: sortFlag === '1' }"
+                >
+                  <a href="javascript:;" @click="changeOrder('1')">
+                    综合
+                    <i
+                      v-if="sortFlag === '1'"
+                      class="iconfont"
+                      :class="{
+                        iconup: sortType === 'asc',
+                        icondown: sortType === 'desc',
+                      }"
+                    ></i>
+                  </a>
                 </li>
-                <li>
-                  <a href="#">销量</a>
+                <li
+                  :class="{ active: sortFlag === '2' }"
+                >
+                  <a href="javascript:;" @click="changeOrder('2')">价格</a>
+                  <i
+                    v-if="sortFlag === '2'"
+                    class="iconfont"
+                    :class="{
+                      iconup: sortType === 'asc',
+                      icondown: sortType === 'desc',
+                    }"
+                  ></i>
                 </li>
-                <li>
-                  <a href="#">新品</a>
-                </li>
-                <li>
-                  <a href="#">评价</a>
-                </li>
-                <li>
-                  <a href="#">价格⬆</a>
-                </li>
-                <li>
+                <!-- <li>
                   <a href="#">价格⬇</a>
-                </li>
+                </li> -->
               </ul>
             </div>
           </div>
@@ -560,7 +580,7 @@ export default {
         props: [],
         trademark: "",
 
-        order: "1:desc",
+        order: "2:asc",
         pageNo: 1,
         pageSize: 10,
       },
@@ -579,59 +599,82 @@ export default {
   // 当我们已经在search页面的时候，再点击搜索发现页面没再发请求，这是因为咱们的请求只在mounted的时候发过，然后组件没被销毁，所以就有这个bug
   // 我们可以监视路由对象，当他发生变化时，我们再发送一次请求就好了
   watch: {
-    $route:{
-      handler(newVal,oldVal) {
-       this.handleSearchParams();
-       this.getSearchInfo();
+    $route: {
+      handler(newVal, oldVal) {
+        this.handleSearchParams();
+        this.getSearchInfo();
       },
     },
   },
 
   methods: {
-
     // 发送请求
     getSearchInfo() {
       this.$store.dispatch("getSearchInfo", this.searchParams);
     },
 
     // 封装请求参数的函数
-    handleSearchParams(){
-       let { category1Id, category2Id, category3Id, categoryName } =
-          this.$route.query;
-        let { keyword } = this.$route.params;
+    handleSearchParams() {
+      let { category1Id, category2Id, category3Id, categoryName } =
+        this.$route.query;
+      let { keyword } = this.$route.params;
 
-        let searchParams = {
-          ...this.searchParams,
-          category1Id,
-          category2Id,
-          category3Id,
-          categoryName,
-          keyword,
-        };
+      let searchParams = {
+        ...this.searchParams,
+        category1Id,
+        category2Id,
+        category3Id,
+        categoryName,
+        keyword,
+      };
 
-        this.searchParams = searchParams;
+      this.searchParams = searchParams;
     },
 
-    removeCategoryName(){
-      this.searchParams.categoryName = "",
-      // this.getSearchInfo();     // 这里删除以后不会动我的原来路径，所这样发请求不行，我们得让路径发生变化
-      this.$router.push({name:'search',params:this.$route.params});
+    removeCategoryName() {
+      (this.searchParams.categoryName = ""),
+        // this.getSearchInfo();     // 这里删除以后不会动我的原来路径，所这样发请求不行，我们得让路径发生变化
+        this.$router.push({ name: "search", params: this.$route.params });
     },
 
-    removeKeyword(){
-      this.searchParams.keyword = "",
-      this.$bus.$emit('clearKeyword');     //通知header组件清空搜索的关键词
+    removeKeyword() {
+      (this.searchParams.keyword = ""), this.$bus.$emit("clearKeyword"); //通知header组件清空搜索的关键词
       // this.getSearchInfo();         // 这里删除以后不会动我的原来路径，所这样发请求不行，我们得让路径发生变化
-      this.$router.push({name:'search',query:this.$route.query});
+      this.$router.push({ name: "search", query: this.$route.query });
     },
 
-    // 根据品牌索索
-    searchForTrademark(trademark){
+    // 根据品牌搜索
+    searchForTrademark(trademark) {
       console.log(trademark);
+    },
+
+
+    // 改变排序规则
+    changeOrder(sortFlag){
+
+      let originSortFlag = this.sortFlag;
+      let originSortType = this.sortType;
+      let newOrder = '';
+
+      // 如果点击了相同的排序标志，说明点击的是同一个标志，我们需要将排序类型改变
+      if(sortFlag === originSortFlag){
+        newOrder = `${sortFlag}:${originSortType==='asc'?'desc':'asc'}`;
+      }else{
+        // 如果点击了不同的排序标志，说明点击的是同一个标志，我们需要将排序类型改变
+        newOrder = `${sortFlag}:desc`;
+      }
+      console.log(newOrder);
+      this.searchParams.order = newOrder;
     }
   },
   computed: {
     ...mapGetters(["attrList", "goodList", "trademarkList"]),
+    sortFlag(){
+      return this.searchParams.order.split(':')[0];
+    },
+    sortType(){
+      return this.searchParams.order.split(':')[1];
+    }
   },
 };
 </script>
