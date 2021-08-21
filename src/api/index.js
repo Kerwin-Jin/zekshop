@@ -40,3 +40,12 @@ export const reqSearchInfo = (params)=>{
         data:params     //params是用户搜索的参数，这个参数是用户在请求的时候个传递的
     })
 }
+
+
+// 请求获取详情数据
+export function reqDetailInfo(skuId){
+    return mockRequest({
+        url:`/item/${skuId}`,
+        method:"get"
+    })
+}

@@ -1,10 +1,8 @@
 import Vue from "vue"
 import VueRouter from "vue-router"
+import routes from "./routes.js"
 
-import Home from "@/pages/Home"
-import Login from "@/pages/Login"
-import Register from "@/pages/Register"
-import Search from "@/pages/Search"
+
 
 Vue.use(VueRouter);
 
@@ -26,45 +24,13 @@ VueRouter.prototype.push = function(location, onResolved, onRejected){
 
 }
 
+const router = new VueRouter({
+    routes,
 
-const routes = {
-    routes:[
-        {
-            path:"/home",
-            component:Home
-        },
-        {
-            path:"/login",
-            component:Login,
-            meta:{
-                isHidden:true
-            }
-        },
-        {
-            path:"/register",
-            component:Register,
-            meta:{
-                isHidden:true
-            }
-        },
-        {
-            name:"search",
-            path:"/search/:keyword?",
-            component:Search,
-            // props(route){
-            //     const {categoryName} = route.query;
-            //     const {keyword} = route.params;
-            //     return{categoryName,keyword};
-            // }
-        },
-        {
-            path:"*",
-            redirect:"/home"
-        }
-    ]
-}
-
-
-const router = new VueRouter(routes)
+    // 配置滚动行为，跳转到新的路由界面滚动条的位置
+    scrollBehavior(to,from,savedPosition){
+        return {x:0,y:0};
+    }
+})
 
 export default router

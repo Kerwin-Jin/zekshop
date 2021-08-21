@@ -67,9 +67,9 @@
               <li class="yui3-u-1-5">
                 <div class="list-wrap">
                   <div class="p-img">
-                    <a href="item.html" target="_blank"
-                      ><img src="./images/search/mobile01.png"
-                    /></a>
+                    <router-link :to="'/detail/15'">
+                      <img src="./images/search/mobile01.png"/>
+                    </router-link>
                   </div>
                   <div class="price">
                     <strong>
