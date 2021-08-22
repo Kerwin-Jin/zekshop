@@ -1,5 +1,7 @@
-const state = {
+import { getUserTempId } from "@/utils/userUtils"
 
+const state = {
+    userTempId:getUserTempId()
 }
 
 
