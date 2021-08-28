@@ -49,3 +49,14 @@ export function reqDetailInfo(skuId){
         method:"get"
     })
 }
+
+
+// 注册用户的请求
+// /api/user/password/register
+export function register(userInfo){
+    return request({
+        url:"/user/password/register",
+        method:"post",
+        data:userInfo
+    })
+}
