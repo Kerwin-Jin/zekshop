@@ -60,3 +60,22 @@ export function register(userInfo){
         data:userInfo
     })
 }
+
+
+// 获取验证码
+export function reqCode(){
+    return request({
+        url:"/user/register/code",
+        method:"get"
+    })
+}
+
+
+// 登录请求
+export function reqLogin(userInfo){
+    return request({
+        url:"/user/login",
+        method:"post",
+        data:userInfo
+    })
+}
