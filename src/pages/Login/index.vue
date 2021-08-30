@@ -31,7 +31,7 @@ export default {
             alert("登录成功");
             this.$router.push("/home");
           } catch (error) {
-            alert(error.message);
+            alert(error.message); 
           }
         }else{
           alert("请输入用户名或者密码");

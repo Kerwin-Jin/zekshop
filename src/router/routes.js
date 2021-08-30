@@ -3,6 +3,7 @@ import Login from "@/pages/Login"
 import Register from "@/pages/Register"
 import Search from "@/pages/Search"
 import Detail from "@/pages/Detail"
+import Order from "@/pages/Order"
 
 
 export default [
@@ -37,6 +38,10 @@ export default [
         {
             path:"/detail/:goodId",
             component:Detail
+        },
+        {
+            path:"/order",
+            component:Order
         },
         {
             path:"*",

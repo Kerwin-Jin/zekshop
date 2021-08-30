@@ -26,7 +26,6 @@ VueRouter.prototype.push = function(location, onResolved, onRejected){
 
 const router = new VueRouter({
     routes,
-
     // 配置滚动行为，跳转到新的路由界面滚动条的位置
     scrollBehavior(to,from,savedPosition){
         return {x:0,y:0};
@@ -35,7 +34,17 @@ const router = new VueRouter({
 
 // 全局路由守卫
 // router.beforeEach((to,from,next)=>{
-
+//     if(from.path=="./login"){
+//         let token = this.$store.state.user.token
+//         if(!token){
+//             next();
+//         }else{
+//             alert("未登录");
+//             next("/login");
+//         }
+//     }else{
+//         next();
+//     }
 // })
 
 export default router

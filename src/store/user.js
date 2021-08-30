@@ -1,9 +1,10 @@
 import { getUserTempId } from "@/utils/userUtils"
-import {register,reqCode,reqLogin} from "@/api"
+import {register,reqCode,reqLogin,reqAddress} from "@/api"
 const state = {
     userTempId:getUserTempId(),
     code:"", //验证码
-    token:""    //用户token
+    token:localStorage.getItem("TOKEN_KEY"),    //用户token
+    addressList:[]
 }
 
 
@@ -13,6 +14,9 @@ const mutations = {
     },
     RECEIVE_TOKEN(state,data){
         state.token = data;
+    },
+    RECEIVE_ADDRESS(state,data){
+        state.addressList = data;
     }
     
 }
@@ -41,11 +45,19 @@ const actions = {
         const result = await reqLogin(userInfo);
         if(result.code===200){
             context.commit('RECEIVE_TOKEN',result.data.token);
-            return "OK";
             // token获取到之后，需要存储到localStorage当中，因为token在一定时间内不会随意更改
-            // localStorage.setItem("TOKEN_KEY",result.data.token);
+            localStorage.setItem("TOKEN_KEY",result.data.token);
+            return "OK";    //返回登录成功
         }else{
             return Promise.reject(new Error("登录失败ya"));
+        }
+    },
+
+    // 获取地址
+    async requestAddress(context){
+        let result = await reqAddress();
+        if(result.code === 200){
+            context.commit("RECEIVE_ADDRESS",result.data);
         }
     }
 }

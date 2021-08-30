@@ -79,3 +79,12 @@ export function reqLogin(userInfo){
         data:userInfo
     })
 }
+
+
+// 获取收货地址
+export function reqAddress(){
+    return request({
+        url:"/user/order/address",
+        method:"get",
+    })
+}
