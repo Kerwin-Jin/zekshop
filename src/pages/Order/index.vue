@@ -1,20 +1,29 @@
 <template>
     <div>
         <h1>填写并核对订单信息</h1>
-        <div>
+        <div class="block">
             <h3>收件人信息</h3>
-            <ul>
+            <ul class="addressList">
                 <li v-for="address in userAddressList" :key="address.id">
-                    {{address.consignee}}--{{address.userAddress}}--{{address.phoneNum}}
+                    <div>
+                        <span :class="{default:address.isDefault=='1'}" @click="changeDefaultAddress(address,userAddressList)">{{address.consignee}}</span>|
+                        <span>{{address.userAddress}}</span>|
+                        <span>{{address.phoneNum}}</span>
+                        <span v-if="address.isDefault=='1'" style="color:#fff;background-color:#aaa">默认地址</span>
+                    </div>
                 </li>
             </ul>
         </div>
-        <div>
+        <div class="block">
             <h3>支付方式</h3>
             <div>
-                <span>在线支付</span>
+                <span>在线支付</span>|
                 <span>货到付款</span>
             </div>
+        </div>
+        <div class="receiver block">
+            <p>寄送至：{{receiveAddress.userAddress}},收件人：{{receiveAddress.consignee}}，电话：{{receiveAddress.phoneNum}}</p>
+            <button @click="submitOrder">提交订单</button>
         </div>
     </div>
 </template>
@@ -29,16 +38,71 @@ export default {
     methods:{
         getAddress(){
             this.$store.dispatch("requestAddress");
+        },
+        changeDefaultAddress(address,addressList){
+            addressList.forEach(item=>{
+                item.isDefault = "0";
+            })
+            address.isDefault = "1";
+        },
+
+        // 提交订单
+        submitOrder(){
+            // 首先发请求创建订单
+            // 请求成功会返回订单编号
         }
     },
     computed:{
         ...mapState({
             userAddressList:state=>state.user.addressList
-        })
+        }),
+        receiveAddress(){
+            return this.userAddressList.find(item=>item.isDefault == '1') || {};
+        }
     }
 }
 </script>
 
-<style>
-
+<style scoped>
+.addressList{
+    padding-left: 20px;
+}
+.addressList li{
+    height: 50px;
+    line-height: 50px;
+}
+.addressList li:hover{
+    background-color: rgb(236, 236, 236);
+}
+.addressList li span{
+    padding:5px;
+    margin: 10px;
+}
+.addressList li span:nth-child(1){
+    padding: 5 10px;
+    cursor: pointer;
+}
+.default{
+    border: 1px solid #f40;
+}
+.receiver{
+    margin: 10px;
+    padding:5px;
+}
+.receiver p{
+    margin: 10px;
+}
+.receiver button{
+    border: none;
+    color: #fff;
+    background-color: #f40;
+    width: 70px;
+    height: 30px;
+    cursor: pointer;
+}
+.block{
+    margin: 10px 0;
+    padding:10px;
+    border: 1px solid #aaa;
+}
 </style>
