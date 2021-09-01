@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from '@/App.vue'
 import router from "@/router"
 import store from "@/store"
+import * as API from "@/api"    //将写的所有API接口引入进来
 
 import "swiper/css/swiper.min.css"
 
@@ -16,6 +17,7 @@ Vue.component("Pagination",Pagination);
 new Vue({
   beforeCreate(){
     Vue.prototype.$bus = this;
+    Vue.prototype.$API = API;     //将API接口挂到Vue原型上边
   },
   router,
   store,

@@ -47,9 +47,26 @@ export default {
         },
 
         // 提交订单
-        submitOrder(){
+        async submitOrder(){
             // 首先发请求创建订单
             // 请求成功会返回订单编号
+
+            // 处理参数
+            let tradeInfo = {
+                consignee:this.receiveAddress.consignee,
+                consigneeTel:this.receiveAddress.phoneNum,
+                deliveryAddress:this.receiveAddress.userAddress,
+                paymentWay:"ONLINE"
+            }
+
+            const result = await this.$API.reqSubmitOrder(tradeInfo);
+            if(result.code == 200){
+                // 请求成功之后跳转到支付页面
+                alert("创建订单成功，正在跳往支付页面...");
+                this.$router.push("/pay?orderNum="+result.data.orderNo);
+            }else{
+                alert("创建订单失败");
+            }
         }
     },
     computed:{

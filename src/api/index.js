@@ -88,3 +88,23 @@ export function reqAddress(){
         method:"get",
     })
 }
+
+
+// 请求提交创建订单
+//
+export const reqSubmitOrder = (tradeInfo)=>{
+    return request({
+        url:"/order/auth/submitOrder",
+        method:"post",
+        data:tradeInfo
+    })
+}
+
+
+// 请求支付信息
+export const reqPayInfo = ()=>{
+    return request({
+        url:"/payment/createNative/ap",
+        method:"get"
+    })
+}
