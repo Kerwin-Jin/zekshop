@@ -5,6 +5,7 @@ import Search from "@/pages/Search"
 import Detail from "@/pages/Detail"
 import Order from "@/pages/Order"
 import Pay from "@/pages/Pay"
+import PaySuccess from "@/pages/PaySuccess"
 
 
 export default [
@@ -47,6 +48,10 @@ export default [
         {
             path:"/pay",
             component:Pay
+        },
+        {
+            path:"/paysuccess",
+            component:PaySuccess
         },
         {
             path:"*",

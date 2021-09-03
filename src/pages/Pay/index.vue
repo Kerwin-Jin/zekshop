@@ -38,6 +38,7 @@ export default {
     return {
       orderNum: "",
       payInfo: {},
+      payStatus:0,
     };
   },
   methods: {
@@ -53,15 +54,46 @@ export default {
 
     // 点击立即支付的回调
     pay() {
-      this.$alert(`<img src=${this.payInfo.codeUrl} style="width:150px;">`, "请使用微信扫码支付", {
-        dangerouslyUseHTMLString: true,
-        showClose:false,
-        center:true,
-        showConfirmButton:true,
-        showCancelButton:true,
-        confirmButtonText:"我已完成支付",
-        cancelButtonText:"支付遇到问题"
-      });
+
+        // 如果有支付信息才进行如下操作，否则直接弹出告警信息
+        if(this.payInfo){
+          // 弹出支付二维码
+          this.$alert(`<img src=${this.payInfo.codeUrl} style="width:150px;">`, "请使用微信扫码支付", {
+              dangerouslyUseHTMLString: true,
+              showClose:false,
+              center:true,
+              showConfirmButton:true,
+              showCancelButton:true,
+              confirmButtonText:"我已完成支付",
+              cancelButtonText:"支付遇到问题"
+          });
+          // 轮询，隔两秒发一个请求，为了让后台给我返回这个订单的支付状态
+          if(!this.timer){
+            this.timer = setInterval(async ()=>{
+              let result = await this.$API.reqPaySatus(this.orderNum);
+              if(result.code==200){
+                // 1、把成功的标志保存下来用于用户点击按钮的时候进行判断
+                console.log(typeof result.code)
+                this.payStatus = 200;
+
+                // 2、提示支付成功
+                this.$message.success("支付成功");
+
+                // 3、关闭定时器
+                clearInterval(this.timer);  //clearInterval只是清除了定时器，不让管理模块当中的定时器生效
+                this.timer = null;          //把之前设置定时器的编号id也清除
+
+                // 4.自动跳转到支付成功页面
+                this.$msgbox.close();       //关闭掉弹出框
+                this.$router.push("/paysuccess");    
+
+              }
+            },2000);
+          }
+
+        }else{
+          this.$alert("未获取到支付信息");
+        }
     },
   },
 };

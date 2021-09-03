@@ -108,3 +108,11 @@ export const reqPayInfo = ()=>{
         method:"get"
     })
 }
+
+// 获取支付状态
+export const reqPaySatus = (orderNum)=>{
+    return request({
+        url:`/pay/status?orderNum=${orderNum}`,
+        method:"get"
+    })
+}
