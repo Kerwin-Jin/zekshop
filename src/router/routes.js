@@ -6,6 +6,9 @@ import Detail from "@/pages/Detail"
 import Order from "@/pages/Order"
 import Pay from "@/pages/Pay"
 import PaySuccess from "@/pages/PaySuccess"
+import Center from "@/pages/Center"
+import MyCenter from "@/pages/Center/MyCenter"
+import GroupCenter from "@/pages/Center/GroupCenter"
 
 
 export default [
@@ -52,6 +55,24 @@ export default [
         {
             path:"/paysuccess",
             component:PaySuccess
+        },
+        {
+            path:"/center",
+            component:Center,
+            children:[
+                {
+                    path:"mycenter",
+                    component:MyCenter
+                },
+                {
+                    path:"groupcenter",
+                    component:GroupCenter
+                },
+                {
+                    path:"",
+                    redirect:"mycenter"
+                }
+            ]
         },
         {
             path:"*",

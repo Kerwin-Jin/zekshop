@@ -1,16 +1,29 @@
 <template>
   <div class="success-wrap">
-      <h1>恭喜喜，支付成功啦！</h1>
+      <h1>恭喜你，支付成功啦！</h1>
       <div>
-          <el-button type="danger">查看订单</el-button>
-          <el-button type="default">继续购物</el-button>
+          <el-button type="danger" @click="toCenter">查看订单</el-button>
+          <el-button type="default" @click="continueShop">继续购物</el-button>
       </div>
   </div>
 </template>
 
 <script>
 export default {
-    name:"PaySuccess"
+    name:"PaySuccess",
+    data(){
+        return{
+
+        }
+    },
+    methods:{
+        toCenter(){
+            this.$router.push("/center");
+        },
+        continueShop(){
+            this.$router.push("/home");
+        }
+    }
 }
 </script>
 

@@ -12,7 +12,7 @@
     <div class="explanation">
       <h2>重要说明</h2>
       <ul>
-        <li>1.商品汇商城支付平台目前只支持支付宝支付方式。</li>
+        <li>1.商品汇商城支付平台目前只支持微信和支付宝支付方式。</li>
         <li>2.其他支付渠道正在调试中，敬请期待。</li>
         <li>3.为了保证您的购物支付顺利完成，请保存以下支付宝信息</li>
       </ul>
@@ -54,7 +54,6 @@ export default {
 
     // 点击立即支付的回调
     pay() {
-
         // 如果有支付信息才进行如下操作，否则直接弹出告警信息
         if(this.payInfo){
           // 弹出支付二维码
@@ -65,15 +64,37 @@ export default {
               showConfirmButton:true,
               showCancelButton:true,
               confirmButtonText:"我已完成支付",
-              cancelButtonText:"支付遇到问题"
-          });
+              cancelButtonText:"支付遇到问题",
+              // beforeClose一旦设定，那么消息盒子关闭不关闭，我们可以在这个里面进行控制
+              beforeClose:(action,instance,done)=>{
+                // action代表用户点击的是哪个按钮，'confirm'确定按钮，'cancel'取消或'close'关闭
+                if(action === "confirm"){
+                  // 用户点击的是确定
+                  if(!this.payStatus){
+                    // 如果没有成功支付，就走这里
+                    // 1.提示
+                    this.$message.error("未查询到支付成功，请确认您已经完成支付！");
+
+                  }
+                }else if(action === "cancel"){
+                  // 1.提示
+                  this.$message.warning("支付遇到问题请联系客户：400-1813562");
+                  // 2.清除定时器
+                  clearInterval(this.timer);
+                  this.timer = null;
+                  // 3.关闭消息盒子
+                  done();
+                }
+              }
+          }).then(()=>{}).catch(()=>{})//.then处理确定，.catch处理取消，这两个会关闭掉messageBox，这里我们不用，
+          // 而是用beforeClose这个回调函数，这里写出来是为了不让报一个错误
+
           // 轮询，隔两秒发一个请求，为了让后台给我返回这个订单的支付状态
           if(!this.timer){
             this.timer = setInterval(async ()=>{
               let result = await this.$API.reqPaySatus(this.orderNum);
               if(result.code==200){
                 // 1、把成功的标志保存下来用于用户点击按钮的时候进行判断
-                console.log(typeof result.code)
                 this.payStatus = 200;
 
                 // 2、提示支付成功
