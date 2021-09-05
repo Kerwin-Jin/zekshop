@@ -8,7 +8,7 @@
       >内完成支付，超时订单会自动取消，订单号{{ orderNum }}
     </p>
     <p style="color: #ea4a36; font-size: 20px">应付金额：￥{{ payInfo.money }}</p>
-    <el-button type="danger" @click="pay">立即支付</el-button>
+    <button class="submit" @click="pay">立即支付</button>
     <div class="explanation">
       <h2>重要说明</h2>
       <ul>
@@ -141,5 +141,19 @@ export default {
 }
 .explanation h2 {
   color: #ea4a36;
+}
+.submit{
+  border:none;
+  background-color: #ea4a36;
+  color: #fff;
+  width: 80px;
+  height: 40px;
+  line-height: 30px;
+  padding:5px;
+  cursor: pointer;
+  margin: 10px 0;
+}
+.submit:hover{
+  background-color: #cf5140;
 }
 </style>

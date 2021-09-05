@@ -116,3 +116,12 @@ export const reqPaySatus = (orderNum)=>{
         method:"get"
     })
 }
+
+
+// 获取我的订单
+export const reqMyCenterOrder = (page,limit)=>{
+    return request({
+        url:`/center/mycenter/order/${page}/${limit}`,
+        method:"get"
+    })
+}
