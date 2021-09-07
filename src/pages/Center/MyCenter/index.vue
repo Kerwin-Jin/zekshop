@@ -1,5 +1,17 @@
 <template>
-  <div>MyCenter</div>
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th width="20%">商品</th>
+          <th width="30%">订单详情</th>
+          <th width="20%">收货人</th>
+          <th width="20%">金额</th>
+          <th width="20%">状态</th>
+        </tr>
+      </thead>
+    </table>
+  </div>
 </template>
 
 <script>
