@@ -4,7 +4,8 @@ const state = {
     userTempId:getUserTempId(),
     code:"", //验证码
     token:localStorage.getItem("TOKEN_KEY"),    //用户token
-    addressList:[]
+    addressList:[],
+    userInfo:{}
 }
 
 

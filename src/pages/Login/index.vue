@@ -23,15 +23,14 @@ export default {
     methods:{
       async login(){
         let {phone,password} = this;
-
         if(phone&&password){
           // 发送登录请求
           try {
             await this.$store.dispatch("requestLogin",{phone,password});
-            alert("登录成功");
+            this.$alert("登录成功");
             this.$router.push("/home");
           } catch (error) {
-            alert(error.message); 
+            this.$message.error(error.message); 
           }
         }else{
           alert("请输入用户名或者密码");

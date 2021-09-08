@@ -6,7 +6,11 @@
       <div class="container">
         <div class="loginList">
           <p>尚品汇欢迎您！</p>
-          <p>
+          <p v-if="userToken">
+            <span>Kersin</span>
+            <span style="margin-left:10px;cursor:pointer" @click="logout">退出登录</span>
+          </p>
+          <p v-else>
             <span>请</span>
             <router-link to="/login">登录</router-link>
             <router-link to="/register" class="register">免费注册</router-link>
@@ -49,6 +53,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 export default {
   name: "Header",
   data(){
@@ -58,6 +63,11 @@ export default {
   },
   mounted(){
     this.$bus.$on('clearKeyword',this.clearKeyword)
+  },
+  computed:{
+    ...mapState({
+      userToken:state=>state.user.token
+    })
   },
   methods:{
     toSearch(){
@@ -83,6 +93,14 @@ export default {
 
     clearKeyword(){
       this.keyword = "";
+    },
+
+    // 退出登录
+    logout(){
+      this.$store.state.user.token = "";
+      localStorage.removeItem("TOKEN_KEY");
+      this.$alert("退出成功");
+      this.$router.push("/login");
     }
   }
 };
