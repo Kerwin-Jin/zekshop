@@ -99,7 +99,7 @@ export default {
     logout(){
       this.$store.state.user.token = "";
       localStorage.removeItem("TOKEN_KEY");
-      this.$alert("退出成功");
+      this.$message.error("退出成功");
       this.$router.push("/login");
     }
   }

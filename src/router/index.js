@@ -2,7 +2,7 @@ import Vue from "vue"
 import VueRouter from "vue-router"
 import routes from "./routes.js"
 
-
+import store from "@/store"
 
 Vue.use(VueRouter);
 
@@ -33,18 +33,24 @@ const router = new VueRouter({
 })
 
 // 全局路由守卫
-// router.beforeEach((to,from,next)=>{
-//     if(from.path=="./login"){
-//         let token = this.$store.state.user.token
-//         if(!token){
-//             next();
-//         }else{
-//             alert("未登录");
-//             next("/login");
-//         }
-//     }else{
-//         next();
-//     }
-// })
+router.beforeEach((to,from,next)=>{
+     // 如果token存在，说明用户已经登录过并且token未过期
+    let token = store.state.user.token;
+    if(token){
+        if(to.path == "/login"){
+            next("/home");
+        }else{
+            next();
+        }
+    }else{
+        // token不存在，说明都没登录，在这里需要对要访问的页面做控制，支付，交易等一些页面就不能访问
+        let targetPath = to.path;
+        if(targetPath.indexOf("/center")!=-1 || targetPath.indexOf("/pay")!=-1 || targetPath.startsWith("/order")){
+            next("/login?redirect="+targetPath);
+        }else{
+            next();
+        }
+    }
+})
 
 export default router

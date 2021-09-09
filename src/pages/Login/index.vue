@@ -27,13 +27,14 @@ export default {
           // 发送登录请求
           try {
             await this.$store.dispatch("requestLogin",{phone,password});
-            this.$alert("登录成功");
-            this.$router.push("/home");
+            this.$message.success("登录成功");
+            let toPath = this.$route.query.redirect || "/";
+            this.$router.push(toPath);
           } catch (error) {
             this.$message.error(error.message); 
           }
         }else{
-          alert("请输入用户名或者密码");
+          this.$alert("请输入用户名或密码");
         }
       }
     }
