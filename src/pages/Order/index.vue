@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="order-wrap">
         <h1>填写并核对订单信息</h1>
         <div class="block">
             <h3>收件人信息</h3>
@@ -62,7 +62,7 @@ export default {
             const result = await this.$API.reqSubmitOrder(tradeInfo);
             if(result.code == 200){
                 // 请求成功之后跳转到支付页面
-                alert("创建订单成功，正在跳往支付页面...");
+                this.$alert("创建订单成功，正在跳往支付页面...");
                 this.$router.push("/pay?orderNum="+result.data.orderNo);
             }else{
                 alert("创建订单失败");
@@ -81,6 +81,10 @@ export default {
 </script>
 
 <style scoped>
+.order-wrap{
+    width: 80%;
+    margin: 30px auto;
+}
 .addressList{
     padding-left: 20px;
 }
