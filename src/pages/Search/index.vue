@@ -56,9 +56,6 @@
                     }"
                   ></i>
                 </li>
-                <!-- <li>
-                  <a href="#">价格⬇</a>
-                </li> -->
               </ul>
             </div>
           </div>
@@ -79,7 +76,7 @@
                   </div>
                   <div class="attr">
                     <a
-                      target="_blank"
+                      
                       href="item.html"
                       title="促销信息，下单即赠送三个月CIBN视频会员卡！【小米电视新品4A 58 火爆预约中】"
                       >Apple苹果iPhone 6s (A1699)Apple苹果iPhone 6s
@@ -92,8 +89,8 @@
                   </div>
                   <div class="operate">
                     <a
-                      href="success-cart.html"
-                      target="_blank"
+                      href="javascript:;"
+                      
                       class="sui-btn btn-bordered btn-danger"
                       >加入购物车</a
                     >
@@ -116,7 +113,7 @@
                   </div>
                   <div class="attr">
                     <a
-                      target="_blank"
+                      
                       href="item.html"
                       title="促销信息，下单即赠送三个月CIBN视频会员卡！【小米电视新品4A 58 火爆预约中】"
                       >Apple苹果iPhone 6s (A1699)Apple苹果iPhone 6s
@@ -129,8 +126,8 @@
                   </div>
                   <div class="operate">
                     <a
-                      href="success-cart.html"
-                      target="_blank"
+                      href="javascript:;"
+                      
                       class="sui-btn btn-bordered btn-danger"
                       >加入购物车</a
                     >
@@ -153,7 +150,7 @@
                   </div>
                   <div class="attr">
                     <a
-                      target="_blank"
+                      
                       href="item.html"
                       title="促销信息，下单即赠送三个月CIBN视频会员卡！【小米电视新品4A 58 火爆预约中】"
                       >Apple苹果iPhone 6s (A1699)Apple苹果iPhone 6s
@@ -166,8 +163,8 @@
                   </div>
                   <div class="operate">
                     <a
-                      href="success-cart.html"
-                      target="_blank"
+                      href="javascript:;"
+                      
                       class="sui-btn btn-bordered btn-danger"
                       >加入购物车</a
                     >
@@ -190,7 +187,7 @@
                   </div>
                   <div class="attr">
                     <a
-                      target="_blank"
+                      
                       href="item.html"
                       title="促销信息，下单即赠送三个月CIBN视频会员卡！【小米电视新品4A 58 火爆预约中】"
                       >Apple苹果iPhone 6s (A1699)Apple苹果iPhone 6s
@@ -203,8 +200,8 @@
                   </div>
                   <div class="operate">
                     <a
-                      href="success-cart.html"
-                      target="_blank"
+                      href="javascript:;"
+                      
                       class="sui-btn btn-bordered btn-danger"
                       >加入购物车</a
                     >
@@ -227,7 +224,7 @@
                   </div>
                   <div class="attr">
                     <a
-                      target="_blank"
+                      
                       href="item.html"
                       title="促销信息，下单即赠送三个月CIBN视频会员卡！【小米电视新品4A 58 火爆预约中】"
                       >Apple苹果iPhone 6s (A1699)Apple苹果iPhone 6s
@@ -240,8 +237,8 @@
                   </div>
                   <div class="operate">
                     <a
-                      href="success-cart.html"
-                      target="_blank"
+                      href="javascript:;"
+                      
                       class="sui-btn btn-bordered btn-danger"
                       >加入购物车</a
                     >
@@ -264,7 +261,7 @@
                   </div>
                   <div class="attr">
                     <a
-                      target="_blank"
+                      
                       href="item.html"
                       title="促销信息，下单即赠送三个月CIBN视频会员卡！【小米电视新品4A 58 火爆预约中】"
                       >Apple苹果iPhone 6s (A1699)Apple苹果iPhone 6s
@@ -277,8 +274,8 @@
                   </div>
                   <div class="operate">
                     <a
-                      href="success-cart.html"
-                      target="_blank"
+                      href="javascript:;"
+                      
                       class="sui-btn btn-bordered btn-danger"
                       >加入购物车</a
                     >
@@ -301,7 +298,7 @@
                   </div>
                   <div class="attr">
                     <a
-                      target="_blank"
+                      
                       href="item.html"
                       title="促销信息，下单即赠送三个月CIBN视频会员卡！【小米电视新品4A 58 火爆预约中】"
                       >Apple苹果iPhone 6s (A1699)Apple苹果iPhone 6s
@@ -314,8 +311,8 @@
                   </div>
                   <div class="operate">
                     <a
-                      href="success-cart.html"
-                      target="_blank"
+                      href="javascript:;"
+                      
                       class="sui-btn btn-bordered btn-danger"
                       >加入购物车</a
                     >
@@ -338,7 +335,7 @@
                   </div>
                   <div class="attr">
                     <a
-                      target="_blank"
+                      
                       href="item.html"
                       title="促销信息，下单即赠送三个月CIBN视频会员卡！【小米电视新品4A 58 火爆预约中】"
                       >Apple苹果iPhone 6s (A1699)Apple苹果iPhone 6s
@@ -351,8 +348,8 @@
                   </div>
                   <div class="operate">
                     <a
-                      href="success-cart.html"
-                      target="_blank"
+                      href="javascript:;"
+                      
                       class="sui-btn btn-bordered btn-danger"
                       >加入购物车</a
                     >
@@ -375,7 +372,7 @@
                   </div>
                   <div class="attr">
                     <a
-                      target="_blank"
+                      
                       href="item.html"
                       title="促销信息，下单即赠送三个月CIBN视频会员卡！【小米电视新品4A 58 火爆预约中】"
                       >Apple苹果iPhone 6s (A1699)Apple苹果iPhone 6s
@@ -388,8 +385,8 @@
                   </div>
                   <div class="operate">
                     <a
-                      href="success-cart.html"
-                      target="_blank"
+                      href="javascript:;"
+                      
                       class="sui-btn btn-bordered btn-danger"
                       >加入购物车</a
                     >
@@ -412,7 +409,7 @@
                   </div>
                   <div class="attr">
                     <a
-                      target="_blank"
+                      
                       href="item.html"
                       title="促销信息，下单即赠送三个月CIBN视频会员卡！【小米电视新品4A 58 火爆预约中】"
                       >Apple苹果iPhone 6s (A1699)Apple苹果iPhone 6s
@@ -425,8 +422,8 @@
                   </div>
                   <div class="operate">
                     <a
-                      href="success-cart.html"
-                      target="_blank"
+                      href="javascript:;"
+                      
                       class="sui-btn btn-bordered btn-danger"
                       >加入购物车</a
                     >
@@ -555,7 +552,7 @@ export default {
         props: [],
         trademark: "",
 
-        order: "2:asc",
+        order: "1:asc",
         pageNo: 14,
         pageSize: 10,
       },
@@ -789,7 +786,7 @@ export default {
                 strong {
                   font-weight: 700;
                   i {
-                    margin-left: -5px;
+                    margin-left: 5px;
                   }
                 }
               }

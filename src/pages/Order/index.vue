@@ -5,8 +5,8 @@
             <h3>收件人信息</h3>
             <ul class="addressList">
                 <li v-for="address in userAddressList" :key="address.id">
-                    <div>
-                        <span :class="{default:address.isDefault=='1'}" @click="changeDefaultAddress(address,userAddressList)">{{address.consignee}}</span>|
+                    <div @click="changeDefaultAddress(address,userAddressList)">
+                        <span :class="{default:address.isDefault=='1'}">{{address.consignee}}</span>|
                         <span>{{address.userAddress}}</span>|
                         <span>{{address.phoneNum}}</span>
                         <span v-if="address.isDefault=='1'" style="color:#fff;background-color:#aaa">默认地址</span>
@@ -89,6 +89,7 @@ export default {
     padding-left: 20px;
 }
 .addressList li{
+    cursor: pointer;
     height: 50px;
     line-height: 50px;
 }

@@ -14,9 +14,7 @@
         <button class="login-btn" @click="register">完成注册</button>
       </div>
     </div>
-    <div class="bottom">
-
-    </div>
+    <div class="bottom"></div>
   </div>
 </template>
 
@@ -46,10 +44,10 @@ export default {
           // 注册成功之后跳到登录页
           this.$router.push("/login");
         }catch(err){
-          alert(err.message);
+          this.$alert(err.message);
         }
       }else{
-        alert("请完善信息");
+        this.$alert("请完善信息");
       }
     },
 
@@ -86,10 +84,10 @@ export default {
     padding-left: 10px;
   }
   .input-form{
-    width: 80%;
-    margin: 20px auto;
+    position: absolute;
+    transform: translateX(-50%);
+    left: 50%;
     padding:10px;
-    text-align: center;
   }
   .input-form input{
     height: 20px;

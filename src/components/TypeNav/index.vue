@@ -4,14 +4,14 @@
     <div class="container">
       <h2 class="all" @mouseenter="isShow = true" @mouseout.once="isShow = false">全部商品分类</h2>
       <nav class="nav">
-        <a href="###">服装城</a>
-        <a href="###">美妆馆</a>
-        <a href="###">尚品汇超市</a>
-        <a href="###">全球购</a>
-        <a href="###">闪购</a>
-        <a href="###">团购</a>
-        <a href="###">有趣</a>
-        <a href="###">秒杀</a>
+        <a href="javascript:;">服装城</a>
+        <a href="javascript:;">美妆馆</a>
+        <a href="javascript:;">Zek超市</a>
+        <a href="javascript:;">全球购</a>
+        <a href="javascript:;">闪购</a>
+        <a href="javascript:;">团购</a>
+        <a href="javascript:;">有趣</a>
+        <a href="javascript:;">秒杀</a>
       </nav>
       <div class="sort" v-show="isShow">
         <div class="all-sort-list2" @click="toSearch">

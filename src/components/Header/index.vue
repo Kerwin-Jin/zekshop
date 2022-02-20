@@ -5,7 +5,7 @@
     <div class="top">
       <div class="container">
         <div class="loginList">
-          <p>尚品汇欢迎您！</p>
+          <p>Zek商城欢迎您！</p>
           <p v-if="userToken">
             <span>Kersin</span>
             <span style="margin-left:10px;cursor:pointer" @click="logout">退出登录</span>
@@ -18,20 +18,19 @@
         </div>
         <div class="typeList">
           <router-link to="/center">我的订单</router-link>
-          <a href="###">我的购物车</a>
-          <a href="###">我的尚品汇</a>
-          <a href="###">尚品汇会员</a>
-          <a href="###">企业采购</a>
-          <a href="###">关注尚品汇</a>
-          <a href="###">合作招商</a>
           <router-link to="/order">订单信息</router-link>
+          <a href="javascript:;" @click="handleAlert">我的购物车</a>
+          <a href="javascript:;" @click="handleAlert">Zek会员</a>
+          <a href="javascript:;" @click="handleAlert">企业采购</a>
+          <a href="javascript:;" @click="handleAlert">关注Zek</a>
+          <a href="javascript:;" @click="handleAlert">合作招商</a>
         </div>
       </div>
     </div>
     <!--头部第二行 搜索区域-->
     <div class="bottom">
       <h1 class="logoArea">
-        <router-link class="logo" title="尚品汇" to="/home">
+        <router-link class="logo" title="Zek" to="/home">
           <img src="./images/logo.png" alt="" />
         </router-link>
       </h1>
@@ -70,6 +69,9 @@ export default {
     })
   },
   methods:{
+    handleAlert(){
+      this.$alert("该模块暂未开发，可以点击[我的订单]和[订单信息]试一试");
+    },
     toSearch(){
       // 如果没有输入的内容，直接return
       if(this.keyword.trim()=="") return alert("请输入搜索关键词！");
